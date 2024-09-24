@@ -1,54 +1,260 @@
 <!doctype html>
 <html lang="en" dir="ltr">
-  <head>
+
+<head>
     <title>STERRAD™ 100NX System</title>
     <meta charset="utf-8">
+    <meta name="description" content="&lt;model-viewer&gt; template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link type="text/css" href="./styles.css" rel="stylesheet" />
+    <!-- OPTIONAL: The :focus-visible polyfill removes the focus ring for some input types -->
+    <script src="https://cdn.jsdelivr.net/npm/focus-visible@5.0.2/dist/focus-visible.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://threejs.org/examples/js/libs/stats.min.js"></script>
     <script src="https://threejs.org/build/three.min.js"></script>
-  </head>
-  <body>
-    <div id="card">
-      <audio id="audio">
-        <source id="audio-source" src="Intro.mp3" type="audio/mpeg">
-      </audio>
+    <script src="./src/threejs_wasm_worker.js"></script>
+    <script href="https://developers.google.com/ar/develop/java/scene-viewer"></script>
+    <script src="https://applepay.cdn-apple.com/jsapi/v1/apple-pay-sdk.js"></script>
+</head>
 
-      <model-viewer id="toggle-model" src="Steerad.glb" ar ar-modes="webxr scene-viewer quick-look"
-        camera-controls shadow-intensity=".25" environment-image="legacy" animation-loop="false">
-        <button id="play-button">Play Animation</button>
-        <div id="ar-prompt"><img src="ar_hand_prompt.png"></div>
-      </model-viewer>
+<body>
+    <div id="card">
+        <audio id="audio">
+            <source id="audio-source" src="Intro.mp3" type="audio/mpeg">
+        </audio>
+        <!-- <audio id="audio1">
+            <source src="parts.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="audio2">
+            <source src="Usage.mp3" type="audio/mpeg">
+        </audio> -->
+        <model-viewer id="toggle-model" src="Steerad.glb"
+            ios-banner="https://example.com/customBanners/comingSoonBanner.html" ar
+            ar-modes="webxr scene-viewer quick-look" camera-controls alt="" shadow-intensity=".25" touch-action="pan-y" environment-image="legacy" animation-loop="false">
+            <div class=" progress-bar hide" slot="progress-bar">
+            <div class="update-bar"></div>
+    </div>
+        <button slot="ar-button" id="ar-button">
+            View in 4D
+        </button>
+         
+    <div id="button" style="display:flex; justify-content: space-between; transform: translate(0px,0px);">
+        <img src="4.png" align="center" style="width:100px; padding-left: 5px;padding-top: 0px;" />
+        <img src="Cam.png" style="width:120px; padding-right: 5px;padding-top: 0px;" />
+    </div>
+    <div id="all">          
+    <button3 class="slide selected" id="1" id="textr" onclick="switchSrc(1,'USAGE.glb','Intro.mp3',show())"
+       style="transform:translateX(30px);" ><img src="Icon_2.png" id="youtube-icon" style="width:40px;height:40px;"></button3>
+    <a class="slide selected" id="11" onclick="switchSrc('sterrad_anim.glb')"></a>
+    <button1 class="slide selected" id="2" id="textrs" onclick="switchSrc(2,'Sterrad_PARTS.glb','parts.mp3',show())"
+        ><img src="Icon_1.png" id="youtube-icon" style="width:40px;height:40px;"></button1>
+    <a class="slide selected" id="22" onclick="switchSrc('Steeradtext.glb')"></a>
+    <button2 class="slide selected" id="3" id="textrst" onclick="switchSrc(3,'Steerad.glb','Usage.mp3',show())"
+        style="transform:translateX(-30px);"><img src="Icon.png" id="youtube-icon"
+            style="width:40px;height:40px;"></button2>
+    <a class="slide selected" id="33" onclick="switchSrc('Steerad.glb')"></a>
+     </div>
+    <div id="ar-prompt">
+        <img src="ar_hand_prompt.png">
     </div>
 
+    </model-viewer>
+    <section class="attributiontwo">
+        <p style="background-image: url('black.png')"
+            style="width:60px;height:60px; padding-left: 0px;padding-top: 10px;">
+
+            <span>
+                <a
+                    href="https://www.asp.com/sites/default/files/2022-01/AD-160028-01-CT_D-MDR%20STERRAD_100NX_ALLCLear_DataSheet_MDR_digital_TM.pdf"><img
+                        src="Brochure.png" id="youtube-icon" align="center"
+                        style="width:30px;height:40px; padding-left: 17px;padding-top: 0px;"></a>
+                <a href="https://www.youtube.com/watch?v=39HnBANsPyo"><img src="Video.png" id="youtube-icon"
+                        align="center" style="width:30px;height:40px; padding-left: 20px;padding-top: 0px;"></a>
+                <a
+                    href="https://www.asp.com/en-in/products/low-temperature-gas-plasma-sterilization/sterrad-100nx-allclear"><img
+                        src="web.png" id="youtube-icon" align="center"
+                        style="width:30px;height:40px; padding-left: 20px;padding-top: 0px;"></a>
+                <a href="https://drive.google.com/file/d/1hFf5OK8XdV_q6UZ7WFcwiR3xrxWkUQ4Z/view?usp=sharing"><img
+                        src="serch.png" id="youtube-icon" align="center"
+                        style="width:30px;height:40px; padding-left: 20px;padding-top: 0px;"></a>
+                <a
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSew4D56CSKpONvc30Ay7cLUY6FnPCOs7zK9IPYRLQWQPswbsg/viewform?usp=sf_link"><img
+                        src="form.png" id="youtube-icon" align="center"
+                        style="width:30px;height:40px; padding-left: 20px;padding-top: 0px;"></a>
+
+            </span>
+
+    </section>
     <script>
-      const modelViewer = document.querySelector('#toggle-model');
-      const playButton = document.querySelector('#play-button');
-
-      function play_to_end() {
-        modelViewer.play();
-        const duration = modelViewer.duration || 10; // Fallback to 10 if duration is not available
-        setTimeout(() => {
-          modelViewer.pause();
-        }, duration * 1000); // Convert to milliseconds
-      }
-
-      playButton.addEventListener('click', () => {
-        play_to_end();
-      });
-
-      function switchSrc(indx, src, audioSource) {
-        playAudio(audioSource);
-        modelViewer.setAttribute('src', `${src}`);
-        play_to_end();
-      }
-
-      function playAudio(newSrc) {
-        const audioElement = document.getElementById('audio');
-        const sourceElement = document.getElementById('audio-source');
-        sourceElement.src = newSrc;
-        audioElement.load();
-        audioElement.play();
-      }
+        function openURL() {
+            window.open("https://seventh-reality.github.io/Sterrad_Android_IOS/", "_blank"); // Opens in a new tab
+        }
     </script>
-  </body>
+      <script>
+    // Existing playAudio function to play audio when switching models
+    function playAudio(newSrc) {
+        var audioElement = document.getElementById("audio");
+        var sourceElement = document.getElementById("audio-source");
+
+        // Update the audio source
+        sourceElement.src = newSrc;
+        audioElement.load();  // Load the new source
+        audioElement.play();  // Play the new audio
+    }
+
+    // Single-click handler to switch model and start animation/audio
+    function switchSrc(indx, src, audioSource) {
+        const modelViewer = document.querySelector('#toggle-model');
+        playAudio(audioSource);  // Play the corresponding audio
+
+        // Change the 3D model's source
+        modelViewer.setAttribute('src', `${src}`);
+        
+        // Control button visibility
+        handleButtonDisplay(indx);
+        
+        // Play the animation until the end, then stop
+        play_to_end();
+    }
+
+    // Play the animation to the end or rewind if it's already at the end
+    function play_to_end() {
+        const modelViewer = document.querySelector('#toggle-model');
+        modelViewer.play();  // Start playing the animation
+
+        const duration = modelViewer.duration || 10;  // Duration of animation, default to 10 if not provided
+        const playbackTime = duration * 960;  // Custom time based on animation duration
+
+        // Stop the animation after the calculated duration
+        setTimeout(stop, playbackTime);
+    }
+
+    // Stop the animation
+    function stop() {
+        const modelViewer = document.querySelector('#toggle-model');
+        modelViewer.pause();  // Pause the animation
+    }
+
+    // Ensure single-click functionality by using the 'onclick' event only once
+    const modelButtons = document.querySelectorAll('button1, button2, button3');
+
+    modelButtons.forEach(button => {
+        button.onclick = (event) => {
+            event.preventDefault();  // Prevent any default actions
+            const indx = event.currentTarget.id;
+            switchSrc(indx);  // Call the function on single click
+        };
+    });
+</script>
+
+   
+    <script>
+        function show() {
+            /* Access image by id and change
+            the display property to block*/
+            document.getElementById('1')
+                .style.display = "none";
+        }
+        function show() {
+            /* Access image by id and change
+            the display property to block*/
+            document.getElementById('2')
+                .style.display = "none";
+        }
+        function show() {
+            /* Access image by id and change
+            the display property to block*/
+            document.getElementById('3')
+                .style.display = "none";
+        }
+
+        const models = ['Steerad.glb', 'Steeradtext.glb', 'sterrad_anim.glb'];
+        const toggleModel = document.querySelector('#toggle-model');
+        // let j = 0;
+        // setInterval(() => toggleModel.setAttribute('src', `${models[j++ % 2]}`), 2000);
+        function handleButtonDisplay(indx) {
+                document.getElementById("1").style.setProperty('display', 'inline');
+                document.getElementById("2").style.setProperty('display', 'inline');
+                document.getElementById("3").style.setProperty('display', 'inline');
+
+                // Set visibility based on the index
+                switch (indx) {
+                    case 2:
+                        document.getElementById("11").style.setProperty('display', 'inline');
+                        document.getElementById("22").style.setProperty('display', 'none');
+                        document.getElementById("33").style.setProperty('display', 'none');
+                        break;
+                    case 3:
+                        document.getElementById("11").style.setProperty('display', 'none');
+                        document.getElementById("22").style.setProperty('display', 'inline');
+                        document.getElementById("33").style.setProperty('display', 'none');
+                        break;
+                    default:
+                        document.getElementById("11").style.setProperty('display', 'none');
+                        document.getElementById("22").style.setProperty('display', 'none');
+                        document.getElementById("33").style.setProperty('display', 'inline');
+                        break;
+                }
+        }
+        function switchSrc(indx, src, audioSource) {
+            const modelViewer = document.querySelector('#toggle-model');
+
+        // Play the audio and then switch the model
+          playAudio(audioSource)
+          modelViewer.setAttribute('src', `${src}`);
+          handleButtonDisplay(indx);
+          play_to_end();
+        }
+        function play_to_end() {
+            //play to end or rewind if animation is at end//
+            const modelViewer = document.querySelector('#toggle-model');
+            modelViewer.play();
+            t = modelViewer.duration;
+            if(t == 0) t= 10;
+            t = t * 960 / 1;// because duration is in second and time to play and rewind//
+            setTimeout(stop, t);
+        }
+        function stop() {
+            const modelViewer = document.querySelector('#toggle-model');
+            modelViewer.pause();
+        }
+        // var x = document.getElementById("audio");
+        // var y = document.getElementById("audio1");
+        // var z = document.getElementById("audio2");
+
+        function playAudio(newSrc) {
+                var audioElement = document.getElementById("audio");
+                var sourceElement = document.getElementById("audio-source");
+
+                // Update the source
+                sourceElement.src = newSrc;
+
+                // Load the new source
+                audioElement.load();
+
+                // Play the audio
+                audioElement.play();
+        }
+
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YQL89QFMW8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-YQL89QFMW8');
+    </script>
+
+
+
+    </dev>
+    <script type="module" src="https://unpkg.com/@onirix/ar-engine-sdk@1.8.1/dist/ox-sdk.esm.js"></script>
+    <script type="module" src="model-viewer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="model-viewer.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
 </html>
