@@ -20,43 +20,40 @@
 <body>
     <div id="card">
         <audio id="audio">
-            <source src="v.mp3" type="audio/mpeg">
+            <source id="audio-source" src="Intro.mp3" type="audio/mpeg">
         </audio>
+        <!-- <audio id="audio1">
+            <source src="parts.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="audio2">
+            <source src="Usage.mp3" type="audio/mpeg">
+        </audio> -->
         <model-viewer id="toggle-model" src="Steerad.glb"
             ios-banner="https://example.com/customBanners/comingSoonBanner.html" ar
-            ar-modes="webxr scene-viewer quick-look" camera-controls alt="" shadow-intensity=".25" touch-action="pan-y"
-            environment-image="legacy"">
-<div class=" progress-bar hide" slot="progress-bar">
+            ar-modes="webxr scene-viewer quick-look" camera-controls alt="" shadow-intensity=".25" touch-action="pan-y" environment-image="legacy" animation-loop="false">
+            <div class=" progress-bar hide" slot="progress-bar">
             <div class="update-bar"></div>
     </div>
-           
-    <button slot="ar-button" id="ar-button">
-        View in 4D
-    </button>
-    <div id="button" style="display:flex; justify-content: space-between;">
+        <button slot="ar-button" id="ar-button">
+            View in 4D
+        </button>
+         
+    <div id="button" style="display:flex; justify-content: space-between; transform: translate(0px,0px);">
         <img src="4.png" align="center" style="width:100px; padding-left: 5px;padding-top: 0px;" />
-        <img src="iitname.png" style="width:100px; padding-right: 0px;padding-top: 0px;" />
+        <img src="Cam.png" style="width:120px; padding-right: 5px;padding-top: 0px;" />
     </div>
-    <div id="textr">
-        <img src="Text.png" style=" transform: translate(5px,300px);" />
-    </div>
-    <div id="textrs">
-        <img src="Text.png" style=" transform: translate(5px,300px);" />
-    </div>
-            
-    <button3 class="slide selected" id="1" id="textr"
-        onclick="switchSrc(1,'sterrad_anim.glb',playAudio(),show())" style="float:right" ;><img
-            src="Icon_2.png" id="youtube-icon" style="width:40px;height:40px;"></button3>
+    <div id="all">          
+    <button3 class="slide selected" id="1" id="textr" onclick="switchSrc(1,'USAGE.glb','Intro.mp3',show())"
+       style="transform:translateX(30px);" ><img src="Icon_2.png" id="youtube-icon" style="width:40px;height:40px;"></button3>
     <a class="slide selected" id="11" onclick="switchSrc('sterrad_anim.glb')"></a>
-    <button1 class="slide selected" id="2" id="textrs"
-        onclick="switchSrc(2,'Steeradtext.glb',playAudio(),show())" style="float:inline-end" ;><img
-            src="Icon_1.png" id="youtube-icon" style="width:40px;height:40px;"></button1>
+    <button1 class="slide selected" id="2" id="textrs" onclick="switchSrc(2,'Sterrad_PARTS.glb','parts.mp3',show())"
+        ><img src="Icon_1.png" id="youtube-icon" style="width:40px;height:40px;"></button1>
     <a class="slide selected" id="22" onclick="switchSrc('Steeradtext.glb')"></a>
-    <button2 class="slide selected" id="3" id="textrst" onclick="switchSrc(3,'Steerad.glb',playAudio(),show())"
-        style="float:left" ; style="display: inline;"><img src="Icon.png" id="youtube-icon"
+    <button2 class="slide selected" id="3" id="textrst" onclick="switchSrc(3,'Steerad.glb','Usage.mp3',show())"
+        style="transform:translateX(-30px);"><img src="Icon.png" id="youtube-icon"
             style="width:40px;height:40px;"></button2>
     <a class="slide selected" id="33" onclick="switchSrc('Steerad.glb')"></a>
-
+     </div>
     <div id="ar-prompt">
         <img src="ar_hand_prompt.png">
     </div>
@@ -88,18 +85,12 @@
             </span>
 
     </section>
-    <script>    
-        function openURL() {
-      window.open("https://seventh-reality.github.io/Sterrad_Android_IOS/", "_blank"); // Opens in a new tab
-    }
-    </script>
     <script>
-        const myTimeout = setTimeout(myGreeting, 10000);
-        function myGreeting() {
-            document.getElementById("textr").innerHTML = ""
+        function openURL() {
+            window.open("https://seventh-reality.github.io/Sterrad_Android_IOS/", "_blank"); // Opens in a new tab
         }
-        
     </script>
+   
     <script>
         function show() {
             /* Access image by id and change
@@ -124,96 +115,88 @@
         const toggleModel = document.querySelector('#toggle-model');
         // let j = 0;
         // setInterval(() => toggleModel.setAttribute('src', `${models[j++ % 2]}`), 2000);
-        function switchSrc(indx, src) {
-            // if(indx == 2){
-            // document.getElementById("iitpl").style.setProperty('display','none');
-            // document.getElementById("tna").style.setProperty('display','none');
-            // document.getElementById("Brochure").style.setProperty('display','inline');
-            // document.getElementById("tna2").style.setProperty('display','inline');
-            // document.getElementById("tna2").style.setProperty('float','right');
-            // }else if(indx== 3){
-            // document.getElementById("iitpl").setAttribute('style','display:inline');
-            // document.getElementById("tna").setAttribute('style','display:inline');
-            // document.getElementById("tna").style.setProperty('float','right');
-            // document.getElementById("Brochure").setAttribute('style','display:none');
-            // document.getElementById("tna2").setAttribute('style','display:none');
-            // }else if(indx== 5){
-            // document.getElementById("iitpl").setAttribute('style','display:inline');
-            // document.getElementById("tna").setAttribute('style','display:inline');
-            // document.getElementById("tna").style.setProperty('float','right');
-            // }
-            document.getElementById("1").style.setProperty('display', 'inline');
-            document.getElementById("2").style.setProperty('display', 'inline');
-            document.getElementById("3").style.setProperty('display', 'inline');
-            switch (indx) {
-                case 2:
-                    document.getElementById("1").style.setProperty('display', 'inline');
-                    document.getElementById("11").style.setProperty('display', 'inline');
-                    document.getElementById("22").style.setProperty('display', 'none');
-                    document.getElementById("33").style.setProperty('display', 'none');
+        function handleButtonDisplay(indx) {
+                document.getElementById("1").style.setProperty('display', 'inline');
+                document.getElementById("2").style.setProperty('display', 'inline');
+                document.getElementById("3").style.setProperty('display', 'inline');
 
-                    document.getElementById("2").style.setProperty('display', 'inline');
-                    document.getElementById("3").style.setProperty('display', 'inline');
-
-
-                    break;
-                case 3:
-                    document.getElementById("1").style.setProperty('display', 'inline');
-                    document.getElementById("11").style.setProperty('display', 'none');
-                    document.getElementById("22").style.setProperty('display', 'inline');
-                    document.getElementById("33").style.setProperty('display', 'none');
-                    document.getElementById("2").style.setProperty('display', 'inline');
-                    document.getElementById("3").style.setProperty('display', 'inline');
-
-                    break;
-                case 3:
-                    document.getElementById("1").style.setProperty('display', 'inline');
-                    document.getElementById("11").style.setProperty('display', 'none');
-                    document.getElementById("22").style.setProperty('display', 'none');
-                    document.getElementById("33").style.setProperty('display', 'inline');
-                    document.getElementById("2").style.setProperty('display', 'inline');
-                    document.getElementById("3").style.setProperty('display', 'inline');
-                    break;
-                default:
-                    document.getElementById("1").style.setProperty('display', 'inline');
-                    document.getElementById("2").style.setProperty('display', 'inline');
-                    document.getElementById("3").style.setProperty('display', 'inline');
-
-                    break;
-            }
-            toggleModel.setAttribute('src', `${src}`);
-            play_to_end();
+                // Set visibility based on the index
+                switch (indx) {
+                    case 2:
+                        document.getElementById("11").style.setProperty('display', 'inline');
+                        document.getElementById("22").style.setProperty('display', 'none');
+                        document.getElementById("33").style.setProperty('display', 'none');
+                        break;
+                    case 3:
+                        document.getElementById("11").style.setProperty('display', 'none');
+                        document.getElementById("22").style.setProperty('display', 'inline');
+                        document.getElementById("33").style.setProperty('display', 'none');
+                        break;
+                    default:
+                        document.getElementById("11").style.setProperty('display', 'none');
+                        document.getElementById("22").style.setProperty('display', 'none');
+                        document.getElementById("33").style.setProperty('display', 'inline');
+                        break;
+                }
         }
-    </script>
-    <script>
+        function switchSrc(indx, src, audioSource) {
+            const modelViewer = document.querySelector('#toggle-model');
+
+        // Play the audio and then switch the model
+          playAudio(audioSource)
+          modelViewer.setAttribute('src', `${src}`);
+          handleButtonDisplay(indx);
+          play_to_end();
+        }
         function play_to_end() {
             //play to end or rewind if animation is at end//
             const modelViewer = document.querySelector('#toggle-model');
             modelViewer.play();
-            t=modelViewer.duration;
-            t=t*960/2 ;// because duration is in second and time to play and rewind//
+            t = modelViewer.duration;
+            if(t == 0) t= 10;
+            t = t * 960 / 1;// because duration is in second and time to play and rewind//
             setTimeout(stop, t);
         }
         function stop() {
             const modelViewer = document.querySelector('#toggle-model');
             modelViewer.pause();
         }
-        var x = document.getElementById("audio");
+        // var x = document.getElementById("audio");
+        // var y = document.getElementById("audio1");
+        // var z = document.getElementById("audio2");
 
-        function playAudio() {
-            x.play();
+        function playAudio(newSrc) {
+                var audioElement = document.getElementById("audio");
+                var sourceElement = document.getElementById("audio-source");
+
+                // Update the source
+                sourceElement.src = newSrc;
+
+                // Load the new source
+                audioElement.load();
+
+                // Play the audio
+                audioElement.play();
         }
 
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YQL89QFMW8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
+        gtag('config', 'G-YQL89QFMW8');
     </script>
 
 
 
     </dev>
     <script type="module" src="https://unpkg.com/@onirix/ar-engine-sdk@1.8.1/dist/ox-sdk.esm.js"></script>
-    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.0.1/model-viewer.min.js"></script>
+    <script type="module" src="model-viewer.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <script type="module" src="model-viewer.min.js"></script>
     <script src="script.js"></script>
 </body>
 
