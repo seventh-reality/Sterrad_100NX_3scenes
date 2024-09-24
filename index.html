@@ -90,63 +90,6 @@
             window.open("https://seventh-reality.github.io/Sterrad_Android_IOS/", "_blank"); // Opens in a new tab
         }
     </script>
-      <script>
-    // Existing playAudio function to play audio when switching models
-    function playAudio(newSrc) {
-        var audioElement = document.getElementById("audio");
-        var sourceElement = document.getElementById("audio-source");
-
-        // Update the audio source
-        sourceElement.src = newSrc;
-        audioElement.load();  // Load the new source
-        audioElement.play();  // Play the new audio
-    }
-
-    // Single-click handler to switch model and start animation/audio
-    function switchSrc(indx, src, audioSource) {
-        const modelViewer = document.querySelector('#toggle-model');
-        playAudio(audioSource);  // Play the corresponding audio
-
-        // Change the 3D model's source
-        modelViewer.setAttribute('src', `${src}`);
-        
-        // Control button visibility
-        handleButtonDisplay(indx);
-        
-        // Play the animation until the end, then stop
-        play_to_end();
-    }
-
-    // Play the animation to the end or rewind if it's already at the end
-    function play_to_end() {
-        const modelViewer = document.querySelector('#toggle-model');
-        modelViewer.play();  // Start playing the animation
-
-        const duration = modelViewer.duration || 10;  // Duration of animation, default to 10 if not provided
-        const playbackTime = duration * 960;  // Custom time based on animation duration
-
-        // Stop the animation after the calculated duration
-        setTimeout(stop, playbackTime);
-    }
-
-    // Stop the animation
-    function stop() {
-        const modelViewer = document.querySelector('#toggle-model');
-        modelViewer.pause();  // Pause the animation
-    }
-
-    // Ensure single-click functionality by using the 'onclick' event only once
-    const modelButtons = document.querySelectorAll('button1, button2, button3');
-
-    modelButtons.forEach(button => {
-        button.onclick = (event) => {
-            event.preventDefault();  // Prevent any default actions
-            const indx = event.currentTarget.id;
-            switchSrc(indx);  // Call the function on single click
-        };
-    });
-</script>
-
    
     <script>
         function show() {
