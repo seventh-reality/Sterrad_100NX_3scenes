@@ -146,36 +146,39 @@
                 }
         }
         function switchSrc(indx, src, audioSource) {
-            const modelViewer = document.querySelector('#toggle-model');
+        const modelViewer = document.querySelector('#toggle-model');
 
         // Play the audio and then switch the model
-          playAudio(audioSource)
-          modelViewer.setAttribute('src', `${src}`);
-          handleButtonDisplay(indx);
-          play_to_end();
-        }
-        
-        function stop() {
-            const modelViewer = document.querySelector('#toggle-model');
-            modelViewer.pause();
-        }
-        // var x = document.getElementById("audio");
-        // var y = document.getElementById("audio1");
-        // var z = document.getElementById("audio2");
+        playAudio(audioSource);
+        modelViewer.setAttribute('src', `${src}`);
 
-        function playAudio(newSrc) {
-                var audioElement = document.getElementById("audio");
-                var sourceElement = document.getElementById("audio-source");
+        // Play the animation for 1 minute (60000ms), then stop it
+        modelViewer.play();  // Start the animation
+        setTimeout(() => {
+            modelViewer.pause();  // Stop the animation after 1 minute
+        }, 15000);  // 1 minute = 60000 milliseconds
 
-                // Update the source
-                sourceElement.src = newSrc;
+        handleButtonDisplay(indx);
+    }
 
-                // Load the new source
-                audioElement.load();
+    function stop() {
+        const modelViewer = document.querySelector('#toggle-model');
+        modelViewer.pause();
+    }
 
-                // Play the audio
-                audioElement.play();
-        }
+    function playAudio(newSrc) {
+        var audioElement = document.getElementById("audio");
+        var sourceElement = document.getElementById("audio-source");
+
+        // Update the source
+        sourceElement.src = newSrc;
+
+        // Load the new source
+        audioElement.load();
+
+        // Play the audio
+        audioElement.play();
+    }
 
     </script>
     <!-- Google tag (gtag.js) -->
