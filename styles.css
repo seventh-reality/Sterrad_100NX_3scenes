@@ -46,6 +46,51 @@ model-viewer {
   height: 500px;
   --poster-color: #ffffff00;
 }
+.attributiontwo {
+height: 60px;
+}
+
+.attribution1 {
+  color: #000000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  
+  align-content: center;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  
+}
+
+.attribution {
+  color: #000000;
+ 
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 0em;
+  align-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  
+}
+
+.attribution h1 {
+  margin: 0 0 0.25em;
+  color: #000000;
+}
+
+.attribution img {
+  
+  height: 1em;
+ 
+}
+
+.attribution .cc {
+  flex-shrink: .01;
+  text-decoration: none;
+  color: #000000;
+}
+
 
 
 .progress-bar {
