@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Model Viewer with AR</title>
+  <title>Model Viewer Medical UI</title>
   
   <script type="module" src="model-viewer.min.js"></script>
 
@@ -11,131 +11,124 @@
     body {
       margin: 0;
       padding: 0;
-      background-color: #f0f0f0;
+      background: #fafafa;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
+
+    .card {
+      background: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 16px;
+      width: 320px;
+      padding: 20px 10px 10px 10px;
+      position: relative;
+      text-align: center;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      padding: 0 10px;
+    }
+
+    .header img {
+      height: 20px;
+    }
+
+    .header span {
+      font-size: 10px;
+      font-weight: bold;
+      color: #666;
+    }
+
     model-viewer {
       width: 100%;
-      height: 500px;
-      background-color: #eee;
-      position: relative;
-      display: block;
+      height: 320px;
+      background: #f4f4f4;
+      border-radius: 12px;
     }
-    #ar-button {
-      background-image: url('ar_icon.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-color: #efefef;
-      color: white;
+
+    .button-row {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .button-icon {
+      background: #eee;
       border: none;
-      padding: 10px 20px;
-      font-size: 16px;
-      border-radius: 50%;
+      border-radius: 8px;
+      padding: 10px;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       cursor: pointer;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 10;
-      width: 70px;
-      height: 70px;
+      transition: all 0.2s ease;
     }
-    #buttons {
-      position: absolute;
-      bottom: 20px;
-      width: 100%;
-      text-align: center;
-      z-index: 5;
+
+    .button-icon img {
+      width: 24px;
+      height: 24px;
     }
-    /* General button styles */
-    .slide {
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      color: #fff;
-      border: 2px solid transparent;
-      cursor: pointer;
-      display: inline-block;
-      margin: 0 10px;
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      font-weight: bold;
-      backdrop-filter: blur(5px);
-      position: relative;
-      overflow: hidden;
-      text-align: center;
-      line-height: 80px;
-      font-size: 14px;
-      background-color: #ddd;
+
+    .button-icon:hover {
+      background: #ddd;
+      transform: scale(1.05);
     }
-    /* Specific background images for each button */
-    #button1 {
-      background-image: url('Icon.png'); /* Intro button */
-    }
-    #button2 {
-      background-image: url('Icon_1.png'); /* Parts button */
-    }
-    #button3 {
-      background-image: url('Icon_2.png'); /* Usage button */
-    }
-    /* Selected button */
-    .selected {
-      border: 2px solid #000;
-    }
-    /* Button label */
-    .slide span {
-      position: absolute;
-      bottom: -5px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0,0,0,0.6);
-      color: #fff;
-      font-size: 12px;
-      padding: 2px 5px;
-      border-radius: 5px;
-      white-space: nowrap;
-    }
+
     audio {
       width: 100%;
-      margin-top: 20px;
+      margin-top: 15px;
     }
   </style>
 </head>
 
 <body>
 
-<model-viewer id="model-viewer" 
-  src="USAGE.glb"
-  ios-src="USAGE.usdz"
-  ar
-  ar-modes="scene-viewer webxr quick-look"
-  camera-controls
-  auto-rotate>
-  
-  <button slot="ar-button" id="ar-button"></button>
+<div class="card">
+  <div class="header">
+    <img src="4.png" alt="Logo">
+    <span>ACTIS™+P SOLUTION</span>
+  </div>
 
-  <div id="buttons">
-    <button class="slide selected" id="button1" onclick="switchSrc(1, 'USAGE.glb', 'Intro.mp3')">
-      <span>Intro</span>
+  <model-viewer id="model-viewer" 
+    src="USAGE.glb"
+    ios-src="USAGE.usdz"
+    ar
+    ar-modes="scene-viewer webxr quick-look"
+    camera-controls
+    auto-rotate>
+  </model-viewer>
+
+  <div class="button-row">
+    <button class="button-icon" onclick="switchSrc('USAGE.glb', 'Intro.mp3')">
+      <img src="icon1.png" alt="Intro">
     </button>
-    <button class="slide" id="button2" onclick="switchSrc(2, 'Sterrad_PARTS.glb', 'parts.mp3')">
-      <span>Parts</span>
+    <button class="button-icon" onclick="switchSrc('Sterrad_PARTS.glb', 'parts.mp3')">
+      <img src="icon2.png" alt="Parts">
     </button>
-    <button class="slide" id="button3" onclick="switchSrc(3, 'Steerad.glb', 'Usage.mp3')">
-      <span>Usage</span>
+    <button class="button-icon" onclick="switchSrc('Steerad.glb', 'Usage.mp3')">
+      <img src="icon3.png" alt="Usage">
     </button>
   </div>
-  
-</model-viewer>
 
-<audio id="audioPlayer" controls autoplay>
-  <source src="Intro.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
+  <audio id="audioPlayer" controls autoplay>
+    <source src="Intro.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+</div>
 
 <script>
-  function switchSrc(buttonId, modelPath, audioPath) {
+  function switchSrc(modelPath, audioPath) {
     const modelViewer = document.getElementById('model-viewer');
     const audioPlayer = document.getElementById('audioPlayer');
 
@@ -144,10 +137,6 @@
 
     audioPlayer.src = audioPath;
     audioPlayer.play();
-
-    // Update button selection
-    document.querySelectorAll('.slide').forEach(button => button.classList.remove('selected'));
-    document.getElementById('button' + buttonId).classList.add('selected');
   }
 </script>
 
