@@ -44,49 +44,51 @@
         <img src="4.png" align="center" style="width:100px; padding-left: 5px;padding-top: 0px;" />
         <img src="Cam.png" style="width:120px; padding-right: 5px;padding-top: 0px;" />
     </div>
-    <div id="all">          
-    <button3 class="slide selected" id="1" id="textr" onclick="switchSrc(1,'USAGE.glb','Intro.mp3',show())"
-       style="transform:translateX(30px);" ><img src="Icon_2.png" id="youtube-icon" style="width:40px;height:40px;"></button3>
-    <a class="slide selected" id="11" onclick="switchSrc('sterrad_anim.glb')"></a>
-    <button1 class="slide selected" id="2" id="textrs" onclick="switchSrc(2,'Sterrad_PARTS.glb','parts.mp3',show())"
-        ><img src="Icon_1.png" id="youtube-icon" style="width:40px;height:40px;"></button1>
-    <a class="slide selected" id="22" onclick="switchSrc('Steeradtext.glb')"></a>
-    <button2 class="slide selected" id="3" id="textrst" onclick="switchSrc(3,'Steerad.glb','Usage.mp3',show())"
-        style="transform:translateX(-30px);"><img src="Icon.png" id="youtube-icon"
-            style="width:40px;height:40px;"></button2>
-    <a class="slide selected" id="33" onclick="switchSrc('Steerad.glb')"></a>
-     </div>
+   <div style="
+  position: absolute;
+  bottom: 20px; /* Adjust as needed */
+  left: 50%;
+  transform: translate(-45%, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  z-index: 1000;
+">
+  <button class="slide selected" id="3" onclick="switchSrc(3,'Leg.glb')" style="background: none; border: none;">
+    <img src="Icon.png" alt="Leg" style="width: 40px; height: 40px;">
+  </button>
+  <button class="slide selected" id="2" onclick="switchSrc(2,'Hip.glb')" style="background: none; border: none;">
+    <img src="Icon_1.png" alt="Hip" style="width: 40px; height: 40px;">
+  </button>
+  <button class="slide selected" id="1" onclick="switchSrc(1,'Hip_Anim.glb', play_to_end())" style="background: none; border: none;">
+    <img src="Icon_2.png" alt="Animation" style="width: 40px; height: 40px;">
+  </button>
+</div>
     <div id="ar-prompt">
         <img src="ar_hand_prompt.png">
     </div>
 
     </model-viewer>
-    <section class="attributiontwo">
-        <p style="background-image: url('black.png')"
-            style="width:60px;height:60px; padding-left: 0px;padding-top: 10px;">
+    <section class="attributiontwo" style="text-align: center; padding: 10px; transform: translateY(-20px);">
+    <p style="background-image: url('black.png'); display: inline-block; padding: 10px;">
+        <span style="display: flex; justify-content: center; gap: 20px; align-items: center;">
+            <a href="https://www.jnjmedtech.com/system/files/pdf/AU-116499-210702%20ACTIS%20Design%20Rationale.pdf">
+                <img src="Brochure_1.png" alt="Brochure" style="width:40px;height:40px;">
+            </a>
+            <a href="https://www.youtube.com/watch?v=XydpQaukoEQ">
+                <img src="Video_1.png" alt="Video" style="width:40px;height:40px;">
+            </a>
+            <a href="https://www.jnjmedtech.com/en-US/product/actis-total-hip-solutions">
+                <img src="web_1.png" alt="Website" style="width:40px;height:40px;">
+            </a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSew4D56CSKpONvc30Ay7cLUY6FnPCOs7zK9IPYRLQWQPswbsg/viewform?usp=sf_link">
+                <img src="form_1.png" alt="Form" style="width:40px;height:40px;">
+            </a>
+        </span>
+    </p>
+</section>
 
-            <span>
-                <a
-                    href="https://www.asp.com/sites/default/files/2022-01/AD-160028-01-CT_D-MDR%20STERRAD_100NX_ALLCLear_DataSheet_MDR_digital_TM.pdf"><img
-                        src="Brochure.png" id="youtube-icon" align="center"
-                        style="width:30px;height:40px; padding-left: 17px;padding-top: 0px;"></a>
-                <a href="https://www.youtube.com/watch?v=39HnBANsPyo"><img src="Video.png" id="youtube-icon"
-                        align="center" style="width:30px;height:40px; padding-left: 20px;padding-top: 0px;"></a>
-                <a
-                    href="https://www.asp.com/en-in/products/low-temperature-gas-plasma-sterilization/sterrad-100nx-allclear"><img
-                        src="web.png" id="youtube-icon" align="center"
-                        style="width:30px;height:40px; padding-left: 20px;padding-top: 0px;"></a>
-                <a href="https://drive.google.com/file/d/1hFf5OK8XdV_q6UZ7WFcwiR3xrxWkUQ4Z/view?usp=sharing"><img
-                        src="serch.png" id="youtube-icon" align="center"
-                        style="width:30px;height:40px; padding-left: 20px;padding-top: 0px;"></a>
-                <a
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSew4D56CSKpONvc30Ay7cLUY6FnPCOs7zK9IPYRLQWQPswbsg/viewform?usp=sf_link"><img
-                        src="form.png" id="youtube-icon" align="center"
-                        style="width:30px;height:40px; padding-left: 20px;padding-top: 0px;"></a>
-
-            </span>
-
-    </section>
     <script>
         function openURL() {
             window.open("https://seventh-reality.github.io/Sterrad_Android_IOS/", "_blank"); // Opens in a new tab
