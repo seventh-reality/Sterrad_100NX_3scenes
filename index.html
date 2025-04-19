@@ -5,7 +5,7 @@
     <title>STERRAD™ 100NX System</title>
     <meta charset="utf-8">
     <meta name="description" content="&lt;model-viewer&gt; template">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
     <link type="text/css" href="./styles.css" rel="stylesheet" />
     <!-- OPTIONAL: The :focus-visible polyfill removes the focus ring for some input types -->
     <script src="https://cdn.jsdelivr.net/npm/focus-visible@5.0.2/dist/focus-visible.js" defer></script>
@@ -15,12 +15,12 @@
     <script src="./src/threejs_wasm_worker.js"></script>
     <script href="https://developers.google.com/ar/develop/java/scene-viewer"></script>
     <script src="https://applepay.cdn-apple.com/jsapi/v1/apple-pay-sdk.js"></script>
-     <style>
+    <style>
         h5 {
             text-align: center;
             margin-top: -5px;
             font-size: 9px;
-            color: #636363; /* Improves visibility */
+            color: #636363;
         }
 
         .attributiontwo {
@@ -39,8 +39,8 @@
 
         .attributiontwo a {
             margin: 15px;
-            text-decoration: none; /* Removes underline */
-           -webkit-tap-highlight-color: transparent; /* Removes blue highlight */
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .icon {
@@ -51,6 +51,38 @@
             transform: scale(1.1);         
         }
 
+        /* AR Button Styling */
+        #ar-button {
+            background-color: #fff;
+            border-radius: 4px;
+            border: none;
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 8px 16px;
+            font-family: sans-serif;
+            font-weight: bold;
+            font-size: 14px;
+            color: #4285f4;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+            z-index: 10;
+            cursor: pointer;
+            display: block !important;
+        }
+
+        #ar-button:active {
+            background-color: #e8eaed;
+        }
+
+        #ar-button:focus {
+            outline: none;
+        }
+
+        #ar-button:focus-visible {
+            outline: 1px solid #4285f4;
+        }
+
         /* Responsive Design */
         @media (max-width: 600px) {
             .attributiontwo {
@@ -59,6 +91,11 @@
             .icon {
                 width: 43px;
                 height: 43px;
+            }
+            #ar-button {
+                bottom: 20px;
+                font-size: 16px;
+                padding: 10px 20px;
             }
         }
     </style>
@@ -76,12 +113,6 @@
         <audio id="audio">
             <source id="audio-source" src="Intro.mp3" type="audio/mpeg">
         </audio>
-        <!-- <audio id="audio1">
-            <source src="parts.mp3" type="audio/mpeg">
-        </audio>
-        <audio id="audio2">
-            <source src="Usage.mp3" type="audio/mpeg">
-        </audio> -->
        <model-viewer id="toggle-model" src="Steerad.glb"
     ios-banner="https://example.com/customBanners/comingSoonBanner.html" ar
     ar-modes="webxr scene-viewer quick-look" camera-controls alt=""
@@ -89,7 +120,7 @@
     animation-loop="false" autoplay>
             <div class=" progress-bar hide" slot="progress-bar">
             <div class="update-bar"></div>
-    </div>
+            </div>
         <button slot="ar-button" id="ar-button">
             View in 4D
         </button>
@@ -130,120 +161,91 @@
                 <a  href="https://docs.google.com/forms/d/e/1FAIpQLSew4D56CSKpONvc30Ay7cLUY6FnPCOs7zK9IPYRLQWQPswbsg/viewform?usp=sf_link"><img
                         src="form_1.png" class="icon"></a>
             </span>
-
     </section>
     <script>
         function openURL() {
-            window.open("https://seventh-reality.github.io/Sterrad_Android_IOS/", "_blank"); // Opens in a new tab
+            window.open("https://seventh-reality.github.io/Sterrad_Android_IOS/", "_blank");
         }
     </script>
    
     <script>
         function show() {
-            /* Access image by id and change
-            the display property to block*/
-            document.getElementById('1')
-                .style.display = "none";
-        }
-        function show() {
-            /* Access image by id and change
-            the display property to block*/
-            document.getElementById('2')
-                .style.display = "none";
-        }
-        function show() {
-            /* Access image by id and change
-            the display property to block*/
-            document.getElementById('3')
-                .style.display = "none";
+            document.getElementById('1').style.display = "none";
+            document.getElementById('2').style.display = "none";
+            document.getElementById('3').style.display = "none";
         }
 
         const models = ['Steerad.glb', 'Steeradtext.glb', 'sterrad_anim.glb'];
         const toggleModel = document.querySelector('#toggle-model');
         const modelViewer = document.querySelector('#toggle-model');
 
-          // Stop animation
         modelViewer.pause();
-        // let j = 0;
-        // setInterval(() => toggleModel.setAttribute('src', `${models[j++ % 2]}`), 2000);
+
         function handleButtonDisplay(indx) {
-                document.getElementById("1").style.setProperty('display', 'inline');
-                document.getElementById("2").style.setProperty('display', 'inline');
-                document.getElementById("3").style.setProperty('display', 'inline');
+            document.getElementById("1").style.setProperty('display', 'inline');
+            document.getElementById("2").style.setProperty('display', 'inline');
+            document.getElementById("3").style.setProperty('display', 'inline');
 
-                // Set visibility based on the index
-                switch (indx) {
-                    case 2:
-                        document.getElementById("11").style.setProperty('display', 'inline');
-                        document.getElementById("22").style.setProperty('display', 'none');
-                        document.getElementById("33").style.setProperty('display', 'none');
-                        break;
-                    case 3:
-                        document.getElementById("11").style.setProperty('display', 'none');
-                        document.getElementById("22").style.setProperty('display', 'inline');
-                        document.getElementById("33").style.setProperty('display', 'none');
-                        break;
-                    default:
-                        document.getElementById("11").style.setProperty('display', 'none');
-                        document.getElementById("22").style.setProperty('display', 'none');
-                        document.getElementById("33").style.setProperty('display', 'inline');
-                        break;
-                }
+            switch (indx) {
+                case 2:
+                    document.getElementById("11").style.setProperty('display', 'inline');
+                    document.getElementById("22").style.setProperty('display', 'none');
+                    document.getElementById("33").style.setProperty('display', 'none');
+                    break;
+                case 3:
+                    document.getElementById("11").style.setProperty('display', 'none');
+                    document.getElementById("22").style.setProperty('display', 'inline');
+                    document.getElementById("33").style.setProperty('display', 'none');
+                    break;
+                default:
+                    document.getElementById("11").style.setProperty('display', 'none');
+                    document.getElementById("22").style.setProperty('display', 'none');
+                    document.getElementById("33").style.setProperty('display', 'inline');
+                    break;
+            }
         }
+
         function switchSrc(indx, src, audioSource) {
-        const modelViewer = document.querySelector('#toggle-model');
+            const modelViewer = document.querySelector('#toggle-model');
 
-        // Play the audio and then switch the model
-        playAudio(audioSource);
-        modelViewer.setAttribute('src', `${src}`);
+            playAudio(audioSource);
+            modelViewer.setAttribute('src', `${src}`);
 
-        // Play the animation for 1 minute (60000ms), then stop it
-        modelViewer.play();  // Start the animation
-        setTimeout(() => {
-            modelViewer.pause();  // Stop the animation after 1 minute
-        }, 11250);  // 1 minute = 60000 milliseconds
+            modelViewer.play();
+            setTimeout(() => {
+                modelViewer.pause();
+            }, 11250);
 
-        handleButtonDisplay(indx);
-    }
+            handleButtonDisplay(indx);
+        }
 
-    function stop() {
-        const modelViewer = document.querySelector('#toggle-model');
-        modelViewer.pause();
-    }
+        function stop() {
+            const modelViewer = document.querySelector('#toggle-model');
+            modelViewer.pause();
+        }
 
-    function playAudio(newSrc) {
-        var audioElement = document.getElementById("audio");
-        var sourceElement = document.getElementById("audio-source");
+        function playAudio(newSrc) {
+            var audioElement = document.getElementById("audio");
+            var sourceElement = document.getElementById("audio-source");
 
-        // Update the source
-        sourceElement.src = newSrc;
-
-        // Load the new source
-        audioElement.load();
-
-        // Play the audio
-        audioElement.play();
-    }
-
+            sourceElement.src = newSrc;
+            audioElement.load();
+            audioElement.play();
+        }
     </script>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PKFETD3KSC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PKFETD3KSC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-PKFETD3KSC');
+    </script>
 
-  gtag('config', 'G-PKFETD3KSC');
-</script>
-   
-
-
-    </dev>
     <script type="module" src="https://unpkg.com/@onirix/ar-engine-sdk@1.8.1/dist/ox-sdk.esm.js"></script>
     <script type="module" src="model-viewer.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="model-viewer.min.js"></script>
     <script src="script.js"></script>
 </body>
-
 </html>
