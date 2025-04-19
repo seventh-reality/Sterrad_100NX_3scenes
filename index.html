@@ -7,7 +7,6 @@
     <meta name="description" content="&lt;model-viewer&gt; template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link type="text/css" href="./styles.css" rel="stylesheet" />
-    <!-- OPTIONAL: The :focus-visible polyfill removes the focus ring for some input types -->
     <script src="https://cdn.jsdelivr.net/npm/focus-visible@5.0.2/dist/focus-visible.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://threejs.org/examples/js/libs/stats.min.js"></script>
@@ -15,6 +14,18 @@
     <script src="./src/threejs_wasm_worker.js"></script>
     <script href="https://developers.google.com/ar/develop/java/scene-viewer"></script>
     <script src="https://applepay.cdn-apple.com/jsapi/v1/apple-pay-sdk.js"></script>
+
+    <!-- Hover Effect Styling -->
+    <style>
+        .slide.selected {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .slide.selected:hover {
+            transform: scale(1.2);
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+        }
+    </style>
 </head>
 
 <body>
@@ -22,185 +33,133 @@
         <audio id="audio">
             <source id="audio-source" src="Intro.mp3" type="audio/mpeg">
         </audio>
-        <!-- <audio id="audio1">
-            <source src="parts.mp3" type="audio/mpeg">
-        </audio>
-        <audio id="audio2">
-            <source src="Usage.mp3" type="audio/mpeg">
-        </audio> -->
-       <model-viewer id="toggle-model" src="Steerad.glb"
-    ios-banner="https://example.com/customBanners/comingSoonBanner.html" ar
-    ar-modes="webxr scene-viewer quick-look" camera-controls alt=""
-    shadow-intensity=".25" touch-action="pan-y" environment-image="legacy"
-    animation-loop="false" autoplay>
-            <div class=" progress-bar hide" slot="progress-bar">
-            <div class="update-bar"></div>
-    </div>
-        <button slot="ar-button" id="ar-button">
-            View in 4D
-        </button>
-         
-    <div id="button" style="display:flex; justify-content: space-between; transform: translate(0px,0px);">
-        <img src="4.png" align="center" style="width:100px; padding-left: 5px;padding-top: 0px;" />
-        <img src="Cam.png" style="width:120px; padding-right: 5px;padding-top: 0px;" />
-    </div>
-   <div style="
-  position: absolute;
-  bottom: 10px; /* Adjust as needed */
-  left: 50%;
-  transform: translate(-45%, 0);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  z-index: 1000;
-">
-  <button class="slide selected" id="3" onclick="switchSrc(3,'Steerad.glb')" style="background: none; border: none;">
-    <img src="Icon.png" alt="Leg" style="width: 40px; height: 40px;">
-  </button>
-  <button class="slide selected" id="2" onclick="switchSrc(2,'Sterrad_PARTS.glb')" style="background: none; border: none;">
-    <img src="Icon_1.png" alt="Hip" style="width: 40px; height: 40px;">
-  </button>
-  <button class="slide selected" id="1" onclick="switchSrc(1,'USAGE.glb',)" style="background: none; border: none;">
-    <img src="Icon_2.png" alt="Animation" style="width: 40px; height: 40px;">
-  </button>
-</div>
-    <div id="ar-prompt">
-        <img src="ar_hand_prompt.png">
-    </div>
 
-    </model-viewer>
-    <section class="attributiontwo" style="text-align: center; padding: 10px; transform: translateY(-20px);">
-    <p style="background-image: url('black.png'); display: inline-block; padding: 10px;">
-        <span style="display: flex; justify-content: center; gap: 20px; align-items: center;">
-            <a href="https://www.asp.com/sites/default/files/2022-01/AD-160028-01-CT_D-MDR%20STERRAD_100NX_ALLCLear_DataSheet_MDR_digital_TM.pdf">
-                <img src="Brochure_1.png" alt="Brochure" style="width:40px;height:40px;">
-            </a>
-            <a href="https://www.youtube.com/watch?v=39HnBANsPyo">
-                <img src="Video_1.png" alt="Video" style="width:40px;height:40px;">
-            </a>
-            <a href="https://www.asp.com/en-in/products/low-temperature-gas-plasma-sterilization/sterrad-100nx-allclear">
-                <img src="web_1.png" alt="Website" style="width:40px;height:40px;">
-            </a>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSew4D56CSKpONvc30Ay7cLUY6FnPCOs7zK9IPYRLQWQPswbsg/viewform?usp=sf_link">
-                <img src="form_1.png" alt="Form" style="width:40px;height:40px;">
-            </a>
-        </span>
-    </p>
-</section>
+        <model-viewer id="toggle-model" src="Steerad.glb"
+            ios-banner="https://example.com/customBanners/comingSoonBanner.html" ar
+            ar-modes="webxr scene-viewer quick-look" camera-controls alt=""
+            shadow-intensity=".25" touch-action="pan-y" environment-image="legacy"
+            animation-loop="false" autoplay>
+            
+            <div class="progress-bar hide" slot="progress-bar">
+                <div class="update-bar"></div>
+            </div>
+            
+            <button slot="ar-button" id="ar-button">View in 4D</button>
 
-    <script>
-        function openURL() {
-            window.open("https://seventh-reality.github.io/Sterrad_Android_IOS/", "_blank"); // Opens in a new tab
-        }
-    </script>
-   
-    <script>
-        function show() {
-            /* Access image by id and change
-            the display property to block*/
-            document.getElementById('1')
-                .style.display = "none";
-        }
-        function show() {
-            /* Access image by id and change
-            the display property to block*/
-            document.getElementById('2')
-                .style.display = "none";
-        }
-        function show() {
-            /* Access image by id and change
-            the display property to block*/
-            document.getElementById('3')
-                .style.display = "none";
-        }
+            <div id="button" style="display:flex; justify-content: space-between; transform: translate(0px,0px);">
+                <img src="4.png" align="center" style="width:100px; padding-left: 5px;padding-top: 0px;" />
+                <img src="Cam.png" style="width:120px; padding-right: 5px;padding-top: 0px;" />
+            </div>
 
-        const models = ['Steerad.glb', 'Steeradtext.glb', 'sterrad_anim.glb'];
-        const toggleModel = document.querySelector('#toggle-model');
-        const modelViewer = document.querySelector('#toggle-model');
+            <div style="position: absolute; bottom: 10px; left: 50%; transform: translate(-45%, 0); display: flex; justify-content: center; align-items: center; gap: 20px; z-index: 1000;">
+                <button class="slide selected" id="3" onclick="switchSrc(3,'Steerad.glb')" style="background: none; border: none;">
+                    <img src="Icon.png" alt="Leg" style="width: 40px; height: 40px;">
+                </button>
+                <button class="slide selected" id="2" onclick="switchSrc(2,'Sterrad_PARTS.glb')" style="background: none; border: none;">
+                    <img src="Icon_1.png" alt="Hip" style="width: 40px; height: 40px;">
+                </button>
+                <button class="slide selected" id="1" onclick="switchSrc(1,'USAGE.glb')" style="background: none; border: none;">
+                    <img src="Icon_2.png" alt="Animation" style="width: 40px; height: 40px;">
+                </button>
+            </div>
 
-          // Stop animation
-        modelViewer.pause();
-        // let j = 0;
-        // setInterval(() => toggleModel.setAttribute('src', `${models[j++ % 2]}`), 2000);
-        function handleButtonDisplay(indx) {
-                document.getElementById("1").style.setProperty('display', 'inline');
-                document.getElementById("2").style.setProperty('display', 'inline');
-                document.getElementById("3").style.setProperty('display', 'inline');
+            <div id="ar-prompt">
+                <img src="ar_hand_prompt.png">
+            </div>
+        </model-viewer>
 
-                // Set visibility based on the index
+        <section class="attributiontwo" style="text-align: center; padding: 10px; transform: translateY(-20px);">
+            <p style="background-image: url('black.png'); display: inline-block; padding: 10px;">
+                <span style="display: flex; justify-content: center; gap: 20px; align-items: center;">
+                    <a href="https://www.asp.com/sites/default/files/2022-01/AD-160028-01-CT_D-MDR%20STERRAD_100NX_ALLCLear_DataSheet_MDR_digital_TM.pdf">
+                        <img src="Brochure_1.png" alt="Brochure" style="width:40px;height:40px;">
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=39HnBANsPyo">
+                        <img src="Video_1.png" alt="Video" style="width:40px;height:40px;">
+                    </a>
+                    <a href="https://www.asp.com/en-in/products/low-temperature-gas-plasma-sterilization/sterrad-100nx-allclear">
+                        <img src="web_1.png" alt="Website" style="width:40px;height:40px;">
+                    </a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSew4D56CSKpONvc30Ay7cLUY6FnPCOs7zK9IPYRLQWQPswbsg/viewform?usp=sf_link">
+                        <img src="form_1.png" alt="Form" style="width:40px;height:40px;">
+                    </a>
+                </span>
+            </p>
+        </section>
+
+        <script>
+            function openURL() {
+                window.open("https://seventh-reality.github.io/Sterrad_Android_IOS/", "_blank");
+            }
+
+            const models = ['Steerad.glb', 'Steeradtext.glb', 'sterrad_anim.glb'];
+            const toggleModel = document.querySelector('#toggle-model');
+            const modelViewer = document.querySelector('#toggle-model');
+
+            modelViewer.pause();
+
+            function handleButtonDisplay(indx) {
+                document.getElementById("1").style.display = "inline";
+                document.getElementById("2").style.display = "inline";
+                document.getElementById("3").style.display = "inline";
+
                 switch (indx) {
                     case 2:
-                        document.getElementById("11").style.setProperty('display', 'inline');
-                        document.getElementById("22").style.setProperty('display', 'none');
-                        document.getElementById("33").style.setProperty('display', 'none');
+                        document.getElementById("11").style.display = "inline";
+                        document.getElementById("22").style.display = "none";
+                        document.getElementById("33").style.display = "none";
                         break;
                     case 3:
-                        document.getElementById("11").style.setProperty('display', 'none');
-                        document.getElementById("22").style.setProperty('display', 'inline');
-                        document.getElementById("33").style.setProperty('display', 'none');
+                        document.getElementById("11").style.display = "none";
+                        document.getElementById("22").style.display = "inline";
+                        document.getElementById("33").style.display = "none";
                         break;
                     default:
-                        document.getElementById("11").style.setProperty('display', 'none');
-                        document.getElementById("22").style.setProperty('display', 'none');
-                        document.getElementById("33").style.setProperty('display', 'inline');
+                        document.getElementById("11").style.display = "none";
+                        document.getElementById("22").style.display = "none";
+                        document.getElementById("33").style.display = "inline";
                         break;
                 }
-        }
-        function switchSrc(indx, src, audioSource) {
-        const modelViewer = document.querySelector('#toggle-model');
+            }
 
-        // Play the audio and then switch the model
-        playAudio(audioSource);
-        modelViewer.setAttribute('src', `${src}`);
+            function switchSrc(indx, src, audioSource) {
+                const modelViewer = document.querySelector('#toggle-model');
+                playAudio(audioSource);
+                modelViewer.setAttribute('src', `${src}`);
+                modelViewer.play();
+                setTimeout(() => {
+                    modelViewer.pause();
+                }, 11250);
+                handleButtonDisplay(indx);
+            }
 
-        // Play the animation for 1 minute (60000ms), then stop it
-        modelViewer.play();  // Start the animation
-        setTimeout(() => {
-            modelViewer.pause();  // Stop the animation after 1 minute
-        }, 11250);  // 1 minute = 60000 milliseconds
+            function stop() {
+                const modelViewer = document.querySelector('#toggle-model');
+                modelViewer.pause();
+            }
 
-        handleButtonDisplay(indx);
-    }
+            function playAudio(newSrc) {
+                var audioElement = document.getElementById("audio");
+                var sourceElement = document.getElementById("audio-source");
+                sourceElement.src = newSrc;
+                audioElement.load();
+                audioElement.play();
+            }
+        </script>
 
-    function stop() {
-        const modelViewer = document.querySelector('#toggle-model');
-        modelViewer.pause();
-    }
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-YQL89QFMW8"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'G-YQL89QFMW8');
+        </script>
 
-    function playAudio(newSrc) {
-        var audioElement = document.getElementById("audio");
-        var sourceElement = document.getElementById("audio-source");
-
-        // Update the source
-        sourceElement.src = newSrc;
-
-        // Load the new source
-        audioElement.load();
-
-        // Play the audio
-        audioElement.play();
-    }
-
-    </script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YQL89QFMW8"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-YQL89QFMW8');
-    </script>
-
-
-
-    </dev>
-    <script type="module" src="https://unpkg.com/@onirix/ar-engine-sdk@1.8.1/dist/ox-sdk.esm.js"></script>
-    <script type="module" src="model-viewer.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="model-viewer.min.js"></script>
-    <script src="script.js"></script>
+        <script type="module" src="https://unpkg.com/@onirix/ar-engine-sdk@1.8.1/dist/ox-sdk.esm.js"></script>
+        <script type="module" src="model-viewer.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
+        <script src="script.js"></script>
+    </div>
 </body>
 
 </html>
