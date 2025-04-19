@@ -1,26 +1,25 @@
 <!doctype html>
 <html lang="en" dir="ltr">
-
 <head>
-    <title>STERRAD™ 100NX System</title>
+    <title>VA LCP ankle</title>
     <meta charset="utf-8">
     <meta name="description" content="&lt;model-viewer&gt; template">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
-    <link type="text/css" href="./styles.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" href="./styles.css" rel="stylesheet"/>
     <!-- OPTIONAL: The :focus-visible polyfill removes the focus ring for some input types -->
     <script src="https://cdn.jsdelivr.net/npm/focus-visible@5.0.2/dist/focus-visible.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://threejs.org/examples/js/libs/stats.min.js"></script>
     <script src="https://threejs.org/build/three.min.js"></script>
     <script src="./src/threejs_wasm_worker.js"></script>
-    <script href="https://developers.google.com/ar/develop/java/scene-viewer"></script>
+    <script href="https://developers.google.com/ar/develop/java/scene-viewer"></script>	
     <script src="https://applepay.cdn-apple.com/jsapi/v1/apple-pay-sdk.js"></script>
-    <style>
+	    <style>
         h5 {
             text-align: center;
             margin-top: -5px;
             font-size: 9px;
-            color: #636363;
+            color: #636363; /* Improves visibility */
         }
 
         .attributiontwo {
@@ -39,8 +38,8 @@
 
         .attributiontwo a {
             margin: 15px;
-            text-decoration: none;
-            -webkit-tap-highlight-color: transparent;
+            text-decoration: none; /* Removes underline */
+           -webkit-tap-highlight-color: transparent; /* Removes blue highlight */
         }
 
         .icon {
@@ -49,41 +48,6 @@
         }
         .icon:hover {
             transform: scale(1.1);         
-        }
-
-        /* AR Button Styling */
-      #ar-button {
-  background-image: url(ar_icon.png);
-  background-repeat: no-repeat;
-  background-size: 20px 20px;
-  background-position: 12px 50%;
-  background-color: #efefef;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  bottom: 16px;
-  padding: 0px 16px 0px 40px;
-  font-family: Roboto Regular, Helvetica Neue, sans-serif;
-  font-size: 14px;
-  color:#636363;
-  height: 36px;
-  line-height: 36px;
-  border-radius: 18px;
-  border: 1px solid #DADCE0;
-  box-shadow: -.5px .5px 1px rgba(0, 0, 0, 1);
-}
-
-        #ar-button:active {
-            background-color: #e8eaed;
-        }
-
-        #ar-button:focus {
-            outline: none;
-        }
-
-        #ar-button:focus-visible {
-            outline: 1px solid #4285f4;
         }
 
         /* Responsive Design */
@@ -95,160 +59,152 @@
                 width: 43px;
                 height: 43px;
             }
-            #ar-button {
-                bottom: 20px;
-                font-size: 16px;
-                padding: 10px 20px;
-            }
         }
     </style>
-    <script type="text/javascript">
+	<script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "r1w6qgygsg");
+    })(window, document, "clarity", "script", "r1w39gktch");
 </script>
 </head>
-
 <body>
     <div id="card">
-        <audio id="audio">
-            <source id="audio-source" src="Intro.mp3" type="audio/mpeg">
-        </audio>
-       <model-viewer id="toggle-model" src="Steerad.glb"
-    ios-banner="https://example.com/customBanners/comingSoonBanner.html" ar
-    ar-modes="webxr scene-viewer quick-look" camera-controls alt=""
-    shadow-intensity=".25" touch-action="pan-y" environment-image="legacy"
-    animation-loop="false" autoplay>
-            <div class=" progress-bar hide" slot="progress-bar">
-            <div class="update-bar"></div>
-            </div>
-        <button slot="ar-button" id="ar-button">
-            View in 4D
-        </button>
-         
-    <div id="button" style="display:flex; justify-content: space-between; transform: translate(0px,0px);">
-        <img src="4.png" align="center" style="width:100px; padding-left: 5px;padding-top: 0px;" />
-        <img src="Cam.png" style="width:120px; padding-right: 5px;padding-top: 0px;" />
-    </div>
-    <div id="all">          
-    <button3 class="slide selected" id="1" id="textr" onclick="switchSrc(1,'USAGE.glb','Intro.mp3',show())"
-       style="transform:translateX(30px);" ><img src="Icon_2.png" id="youtube-icon" style="width:40px;height:40px;"></button3>
-    <a class="slide selected" id="11" onclick="switchSrc('sterrad_anim.glb')"></a>
-    <button1 class="slide selected" id="2" id="textrs" onclick="switchSrc(2,'Sterrad_PARTS.glb','parts.mp3',show())"
-        ><img src="Icon_1.png" id="youtube-icon" style="width:40px;height:40px;"></button1>
-    <a class="slide selected" id="22" onclick="switchSrc('Steeradtext.glb')"></a>
-    <button2 class="slide selected" id="3" id="textrst" onclick="switchSrc(3,'Steerad.glb','Usage.mp3',show())"
-        style="transform:translateX(-30px);"><img src="Icon.png" id="youtube-icon"
-            style="width:40px;height:40px;"></button2>
-    <a class="slide selected" id="33" onclick="switchSrc('Steerad.glb')"></a>
-     </div>
-    <div id="ar-prompt">
-        <img src="ar_hand_prompt.png">
-    </div>
-
+    <model-viewer id="toggle-model" src="Foot.glb"  ar ar-modes="webxr scene-viewer quick-look" camera-controls alt="" shadow-intensity="1"  touch-action="pan-y"  environment-image="music_hall_01_1k.hdr">
+	 <div class="progress-bar hide" slot="progress-bar">
+          <div class="update-bar"></div>
+         </div>
+	<button slot="ar-button" id="ar-button">
+        View in 4D
+        </button>    
+	 <div id="button" style = "display:flex; justify-content: space-between;">
+          <img src="4.png"  align="center" style="width:100px;  padding-left: 5px;padding-top: 0px;"/>
+	  <img src="iitname.png"  style="width:100px;  padding-right: 0px;padding-top: 0px;"/>    
+         </div>   
+	
+        <button3 class="slide selected" id="1" onclick="switchSrc(1,'Boon_anim.glb',play_to_end())" style="float:right";><img src="Icon_2.png" id="youtube-icon" style="width:40px;height:40px;"></button3>
+	 <a class="slide selected" id="11" onclick-"switchSrc('Boon_anim.glb')"></a>  
+        <button1 class="slide selected" id="2" onclick="switchSrc(2,'Bone_Plate.glb')" style="float:inline-end";><img src="Icon_1.png" id="youtube-icon" style="width:40px;height:40px;"></button1>
+	 <a class="slide selected" id="22" onclick-"switchSrc('Bone_Plate.glb')"></a>     
+        <button2 class="slide selected" id="3" onclick="switchSrc(3,'Foot.glb')" style="float:left"; style="display: inline;"><img src="Icon.png" id="youtube-icon" style="width:40px;height:40px;"></button2>
+	 <a class="slide selected" id="33" onclick-"switchSrc('Foot.glb')"></a>     
+        
+      <div id="ar-prompt">
+          <img src="ar_hand_prompt.png">
+      </div>
     </model-viewer>
     <section class="attributiontwo">
-        <p style="background-image: url('black.png')"
-            style="width:60px;height:60px; padding-left: 0px;padding-top: 10px;">
-
-            <span>
-                <a
-                    href="https://www.asp.com/sites/default/files/2022-01/AD-160028-01-CT_D-MDR%20STERRAD_100NX_ALLCLear_DataSheet_MDR_digital_TM.pdf">
-                    <img src="Brochure_1.png" class="icon"></a>
-                <a href="https://www.youtube.com/watch?v=39HnBANsPyo"><img src="Video_1.png" class="icon" ></a>
-                <a href="https://www.asp.com/en-in/products/low-temperature-gas-plasma-sterilization/sterrad-100nx-allclear"><img
-                        src="web_1.png" class="icon"></a>
-            
-                <a  href="https://docs.google.com/forms/d/e/1FAIpQLSew4D56CSKpONvc30Ay7cLUY6FnPCOs7zK9IPYRLQWQPswbsg/viewform?usp=sf_link"><img
-                        src="form_1.png" class="icon"></a>
-            </span>
-    </section>
-    <script>
-        function openURL() {
-            window.open("https://seventh-reality.github.io/Sterrad_Android_IOS/", "_blank");
-        }
-    </script>
+        <p style="background-image: url('black.png')" style="width:60px;height:60px; padding-left: 0px;padding-top: 10px;">   
+       <span>
+         <a href="https://synthes.vo.llnwd.net/o16/LLNWMB8/US%20Mobile/Synthes%20North%20America/Product%20Support%20Materials/Technique%20Guides/Surgical%20Technique%20Guide-2.7mm_3.5mm%20Variable%20Angle%20LCP%20Ankle%20Trauma%20System.pdf">
+		 <img src="Brochure_1.png" class="icon" ></a>
+         <a href="https://www.youtube.com/watch?v=kbEdHIOcFlM">
+		 <img src="Video_1.png" class="icon" ></a>
+         <a href="https://www.jnjmedtech.com/en-US/product/variable-angle-ankle-trauma-system">
+		 <img src="web_1.png" class="icon" ></a>
+         <a href="https://docs.google.com/forms/d/e/1FAIpQLSew4D56CSKpONvc30Ay7cLUY6FnPCOs7zK9IPYRLQWQPswbsg/viewform?usp=sf_link">
+		 <img src="form_1.png" class="icon" ></a>       
+       </span>
+    
+    </section>        
+    
+<script>
+    
+    const models = ['Foot.glb', 'Bone_Plate.glb', 'Boon_anim.glb'];
+    const toggleModel = document.querySelector('#toggle-model');
+    // let j = 0;
+    // setInterval(() => toggleModel.setAttribute('src', `${models[j++ % 2]}`), 2000);
+    function switchSrc(indx,src){
+        // if(indx == 2){
+        //     document.getElementById("iitpl").style.setProperty('display','none');
+        //     document.getElementById("tna").style.setProperty('display','none');
+        //     document.getElementById("Brochure").style.setProperty('display','inline');
+        //     document.getElementById("tna2").style.setProperty('display','inline');
+        //     document.getElementById("tna2").style.setProperty('float','right');
+        // }else if(indx== 3){
+        //     document.getElementById("iitpl").setAttribute('style','display:inline');
+        //     document.getElementById("tna").setAttribute('style','display:inline');
+        //     document.getElementById("tna").style.setProperty('float','right');
+        //     document.getElementById("Brochure").setAttribute('style','display:none');
+        //     document.getElementById("tna2").setAttribute('style','display:none');
+        // }else if(indx== 5){
+        //     document.getElementById("iitpl").setAttribute('style','display:inline');
+        //     document.getElementById("tna").setAttribute('style','display:inline');
+        //     document.getElementById("tna").style.setProperty('float','right');
+        // }
+                document.getElementById("1").style.setProperty('display','inline');
+                document.getElementById("2").style.setProperty('display','inline');
+                document.getElementById("3").style.setProperty('display','inline');
+        switch (indx) {
+            case 2:
+		document.getElementById("1").style.setProperty('display','inline');
+		document.getElementById("11").style.setProperty('display','inline');
+		document.getElementById("22").style.setProperty('display','none');
+		document.getElementById("33").style.setProperty('display','none');	
+			
+                document.getElementById("2").style.setProperty('display','inline');
+                document.getElementById("3").style.setProperty('display','inline');
+		
+                
+                break;
+		case 3:
+		document.getElementById("1").style.setProperty('display','inline');
+		document.getElementById("11").style.setProperty('display','none');
+		document.getElementById("22").style.setProperty('display','inline');
+		document.getElementById("33").style.setProperty('display','none');		
+                document.getElementById("2").style.setProperty('display','inline');
+                document.getElementById("3").style.setProperty('display','inline');
    
-    <script>
-        function show() {
-            document.getElementById('1').style.display = "none";
-            document.getElementById('2').style.display = "none";
-            document.getElementById('3').style.display = "none";
+                break;
+		case 3:
+		document.getElementById("1").style.setProperty('display','inline');
+		document.getElementById("11").style.setProperty('display','none');
+		document.getElementById("22").style.setProperty('display','none');
+		document.getElementById("33").style.setProperty('display','inline');		
+                document.getElementById("2").style.setProperty('display','inline');
+                document.getElementById("3").style.setProperty('display','inline');       
+                break;		  
+            default:
+                document.getElementById("1").style.setProperty('display','inline');
+	        document.getElementById("2").style.setProperty('display','inline');
+                document.getElementById("3").style.setProperty('display','inline');
+		
+            break;
         }
+        toggleModel.setAttribute('src', `${src}`);  
+    }
+</script>
+<script>
+function play_to_end (){
+//play to end or rewind if animation is at end//
+	const modelViewer = document.querySelector('#toggle-model');
+	modelViewer.play();
+	t=modelViewer.duration;
+	t=t*1000/1 ;// because duration is in second and time to play and rewind//
+	setTimeout(stop, t);
+}
+function stop(){
+const modelViewer = document.querySelector('#toggle-model');
+modelViewer.pause();
+}
 
-        const models = ['Steerad.glb', 'Steeradtext.glb', 'sterrad_anim.glb'];
-        const toggleModel = document.querySelector('#toggle-model');
-        const modelViewer = document.querySelector('#toggle-model');
+</script>    
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D9VKJF2MN4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-        modelViewer.pause();
-
-        function handleButtonDisplay(indx) {
-            document.getElementById("1").style.setProperty('display', 'inline');
-            document.getElementById("2").style.setProperty('display', 'inline');
-            document.getElementById("3").style.setProperty('display', 'inline');
-
-            switch (indx) {
-                case 2:
-                    document.getElementById("11").style.setProperty('display', 'inline');
-                    document.getElementById("22").style.setProperty('display', 'none');
-                    document.getElementById("33").style.setProperty('display', 'none');
-                    break;
-                case 3:
-                    document.getElementById("11").style.setProperty('display', 'none');
-                    document.getElementById("22").style.setProperty('display', 'inline');
-                    document.getElementById("33").style.setProperty('display', 'none');
-                    break;
-                default:
-                    document.getElementById("11").style.setProperty('display', 'none');
-                    document.getElementById("22").style.setProperty('display', 'none');
-                    document.getElementById("33").style.setProperty('display', 'inline');
-                    break;
-            }
-        }
-
-        function switchSrc(indx, src, audioSource) {
-            const modelViewer = document.querySelector('#toggle-model');
-
-            playAudio(audioSource);
-            modelViewer.setAttribute('src', `${src}`);
-
-            modelViewer.play();
-            setTimeout(() => {
-                modelViewer.pause();
-            }, 11250);
-
-            handleButtonDisplay(indx);
-        }
-
-        function stop() {
-            const modelViewer = document.querySelector('#toggle-model');
-            modelViewer.pause();
-        }
-
-        function playAudio(newSrc) {
-            var audioElement = document.getElementById("audio");
-            var sourceElement = document.getElementById("audio-source");
-
-            sourceElement.src = newSrc;
-            audioElement.load();
-            audioElement.play();
-        }
-    </script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PKFETD3KSC"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-PKFETD3KSC');
-    </script>
-
-    <script type="module" src="https://unpkg.com/@onirix/ar-engine-sdk@1.8.1/dist/ox-sdk.esm.js"></script>
-    <script type="module" src="model-viewer.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.3/js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="model-viewer.min.js"></script>
+  gtag('config', 'G-D9VKJF2MN4');
+</script>	    
+	    
+	       
+</dev> 
+    
+    
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.0.1/model-viewer.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
